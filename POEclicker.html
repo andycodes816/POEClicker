@@ -1,0 +1,139 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>POE clicker</title>
+
+    <style media="screen">
+      .sectionLeft{
+        float: left;
+        width: 50%;
+      }
+
+      .sectionRight{
+        float: right;
+        width: 50%;
+      }
+
+      .experienceContainer{
+        background-color: rgb(8,238,238,0.6);
+        width: 50%;
+        padding: 10px;
+        border-radius: 200px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+    .clickerContainer img {
+      position: relative;
+      transition: all .2s ease-in-out;
+    }
+
+    .clickerContainer img:hover{
+      transform: scale(1.10);
+    }
+    .clickerContainer img:active{
+      transform: scale(0.90);
+    }
+
+    .shopButton {
+      background-color: #b5b5b5;
+      transition: all .2s ease-in-out;
+      border-radius: 10px;
+      width: 100%;
+      margin: 10px 0 px 10px 0px;
+    }
+
+    .shopButton:hover {
+      background-color: #c7c7c7;
+      transition: all .2s ease-in-out;
+    }
+
+    .shopButton #image {
+      width: 25%;
+    }
+
+    .shopButton img{
+      height: 64px;
+      width: 64px;
+    }
+
+    .shopButton #nameAndCost p {
+      margin: 0px;
+      width: 60%;
+    }
+    </style>
+
+  </head>
+  <body>
+    <div class="sectionLeft">
+      <center>
+        <div class="experienceContainer">
+          Experience: <span id="experience">0</span> <!--put ID here for getElementByID -->
+          <br>
+          <span id="experiencePerSecond">0</span> experience/second
+          <br>
+          Gold: <span id="gold">0</span>
+          <br>
+        </div>
+        <div class="clickerContainer">
+          <img src="Graphics/Monsters/goblin.png" height="256px" width="256px" alt="" onclick="addToScore(1)">
+        </div>
+      </center>
+    </div>
+
+    <div class="sectionRight">
+      <table class="shopButton" onclick="buyCursor()">
+        <tr>
+          <td id="image"><img src="Graphics/Weapons/1dagger.jpg"></td>
+          <td id="nameAndCost">
+            <p>Dagger</p>
+            <p><span id="cursorcost">15</span> experience</p>
+          </td>
+          <td id="amount"><span id="cursors">0</span></td>
+        </tr>
+        <!-- define table rows (TR) first 1, 2, 3, 4, then table columns (TD) -->
+
+      </table>
+    </div>
+<!-- javascript -->
+    <script type="text/javascript">
+
+      var experience = 0;
+      //var name = "Timmy"; //can be words
+      //var isCool = true; //can be true or false
+      //experience = experience + 1;
+      //alert(experience);
+      var gold = 0;
+      var cursorCost = 15;
+      var cursors = 0;
+
+      function buyCursor() {
+          if (experience >= cursorCost) {
+              experience = experience - cursorCost; //sold
+              cursors = cursors + 1; //give cursor
+              document.getElementById("experience").innerHTML = experience;
+              document.getElementById("cursors").innerHTML = cursors;
+              updateExperiencePerSecond();
+          }
+      }
+
+      function addToScore(amount) {
+        experience = experience + amount;
+        document.getElementById("experience").innerHTML = experience; //selects span id experience & sets the span's innerHTMl text to experience value
+      }
+
+      function updateExperiencePerSecond() {
+        experiencePerSecond = cursors;
+        document.getElementById("experiencePerSecond").innerHTML = experiencePerSecond;
+      }
+
+      setInterval(function() {
+        experience = experience + cursors;
+        document.getElementById("experience").innerHTML = experience;
+
+        document.title = experience + " experience - POE clicker";
+      }, 1000); //1000 ms = 1 sec
+
+    </script>
+  </body>
+</html>

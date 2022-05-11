@@ -1,0 +1,26 @@
+
+<script type = "text/javascript"> <!-- setup JS variables in the beginning -->
+	var = experiencecount = 0;
+</script>
+
+<html>
+<head><title>0 Experience</title></head>
+<body>
+
+	<a href=# onclick="add()"><img src="goblin.png"></a> <!-- -->
+	
+	<br><br>
+	
+	You have:
+	<input type="text" id="text" disabled style= text-align:center>
+	
+	<script type = "text/javascript"> <!-- tells this is javascript -->
+	function add() {
+		experiencecount = experiencecount + 1;
+		document.getElementById('text').value = experiencecount;
+		document.title = experiencecount + " experience";
+	}
+	</script>
+	
+</body>
+</html>
